@@ -3,6 +3,7 @@ import { MdSearch } from 'react-icons/md';
 import { movieSearchWithValidImages, type MovieSearchResult } from "../services/tmdb/movieSearch";
 import SearchResult from "./SearchResult";
 import { PulseLoader } from 'react-spinners';
+import { generatePoster } from "../services/pdf/generatePoster";
 
 
 export default function SearchBar() {
@@ -34,9 +35,9 @@ export default function SearchBar() {
   
 
   return (
-    <div className="w-full max-w-lg mx-auto relative">
+    <div className="w-full max-w-xl mx-auto relative pt-32">
       {/* Search input */}
-      <div className={`bg-white border border-gray-300 shadow-lg ${query && query !== '' && !isLoading ? 'rounded-t-lg' : 'rounded-lg'}`}>
+      <div className={`bg-white border border-gray-200 shadow-lg ${query && query !== '' && !isLoading ? 'rounded-t-lg' : 'rounded-lg'}`}>
         <div className="relative flex items-center px-4 py-2">
           <MdSearch className="text-gray-400 text-xl mr-2" />
           <input
@@ -47,21 +48,21 @@ export default function SearchBar() {
             className="flex-1 outline-none text-md bg-transparent"
           />
           {isLoading && (
-            <PulseLoader color="#9ca3af" size={4} speedMultiplier={0.9} />
+            <PulseLoader color="#2a3a52" size={4} speedMultiplier={0.9} />
           )}
         </div>
       </div>
 
       {/* Results dropdown - Absolute positioned */}
       {query && query !== '' && !isLoading && (
-        <div className="absolute top-full w-full rounded-b-lg overflow-hidden border border-t-0 border-gray-300 bg-black text-white text-sm shadow-lg z-10 
+        <div className="absolute top-full w-full rounded-b-lg overflow-hidden border border-t-0 border-gray-200 bg-brand text-white text-sm shadow-lg z-10 
                         animate-[slideIn_0.3s_ease-out_forwards]">
           {results.length > 0 ? (
             results.map((movie) => (
               <SearchResult 
                 key={movie.id} 
                 movie={movie}
-                onClick={() => console.log('Selected:', movie.title, movie.poster_url_w92)}
+                onClick={() => generatePoster(movie.id)}
               />
             ))
           ) : (

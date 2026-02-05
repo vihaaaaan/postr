@@ -40,7 +40,7 @@ export default function SearchResult({ movie, onClick }: SearchResultProps) {
         <h3 className="font-medium text-sm text-white mb-1">
           {movie.title || "Untitled"}
         </h3>
-        <div className="flex items-center gap-3 text-xs text-gray-400">
+        <div className="flex items-start gap-3 text-xs text-gray-400">
           {movie.release_date && (
             <span className="flex items-center gap-1">
               <MdCalendarToday className="w-3 h-3" />
@@ -48,7 +48,7 @@ export default function SearchResult({ movie, onClick }: SearchResultProps) {
             </span>
           )}
           {movie.tmdb_avg_rating && (
-            <span className="flex items-center gap-1">
+            <span className="flex items-start gap-1">
               <MdStar className="w-3 h-3" />
               {formatRating(movie.tmdb_avg_rating)}
             </span>

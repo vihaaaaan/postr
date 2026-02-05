@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-serif: 'Instrument Serif', serif;
+  --color-brand: #2a3a52;
+}
+
 @keyframes slideIn {
   from {
     opacity: 0;
